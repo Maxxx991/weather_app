@@ -20,8 +20,6 @@ def index(request):
                     continue
             if s == 0:
                     form.save()
-        else:
-            redirect('home')
     form = CityForm()
     cities = City.objects.all()
     all_cities = []
