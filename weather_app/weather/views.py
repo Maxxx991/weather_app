@@ -7,13 +7,20 @@ from .forms import CityForm
 def index(request):
     appid = 'eaa93d46995d690d7214a30f25170056'
     url = 'https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + appid
-    if(request.method == 'POST'):
+    if (request.method == 'POST'):
         form = CityForm(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-            except:
-                redirect('home')
+        s = 0
+        if form.is_valid:
+             for i in form.cleaned_data['name']:
+                try:
+                    if int(i):
+                        s += 1
+                except:
+                    continue
+                if s == 0:
+                    form.save()
+        else:
+            redirect('home')
     form = CityForm()
     cities = City.objects.all()
     all_cities = []
