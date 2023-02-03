@@ -17,7 +17,7 @@ def index(request):
                         s += 1
                         break
                 except:
-                        continue
+                    continue
             if s == 0:
                     form.save()
         else:
