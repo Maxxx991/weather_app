@@ -10,14 +10,14 @@ def index(request):
     if (request.method == 'POST'):
         form = CityForm(request.POST)
         s = 0
-        if form.is_valid:
+        if form.is_valid():
              for i in form.cleaned_data['name']:
                 try:
                     if int(i):
                         s += 1
                 except:
-                    continue
-                if s == 0:
+                        continue
+             if s == 0:
                     form.save()
         else:
             redirect('home')
