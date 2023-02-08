@@ -9,16 +9,16 @@ def index(request):
     url = 'https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + appid
     if (request.method == 'POST'):
         form = CityForm(request.POST)
-        s = 0
+        count_of_numbers = 0
         if form.is_valid():
             for i in form.cleaned_data['name']:
                 try:
                     if int(i):
-                        s += 1
+                        count_of_numbers += 1
                         break
                 except:
                     continue
-            if s == 0:
+            if count_of_numbers == 0:
                     form.save()
     form = CityForm()
     cities = City.objects.all()
