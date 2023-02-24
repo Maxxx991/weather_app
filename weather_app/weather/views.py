@@ -11,14 +11,8 @@ def index(request):
         form = CityForm(request.POST)
         count_of_numbers = 0
         if form.is_valid():
-            for i in form.cleaned_data['name']:
-                try:
-                    if int(i):
-                        count_of_numbers += 1
-                        break
-                except:
-                    continue
-            if count_of_numbers == 0:
+            numbers = City()
+            if numbers.check_luck_of_numbers(form):
                     form.save()
     form = CityForm()
     cities = City.objects.all()
