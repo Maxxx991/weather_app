@@ -9,3 +9,15 @@ class City(models.Model):
 
     def clean(self):
         self.name = self.name.capitalize()
+        
+    def check_luck_of_numbers(self, x):
+        flag = True
+        for i in x.cleaned_data['name']:
+            try:
+                if int(i):
+                    flag = False
+                    return flag
+            except:
+                continue
+        if flag:
+            return flag
