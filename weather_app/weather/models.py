@@ -17,7 +17,7 @@ class City(models.Model):
                 if int(i):
                     flag = False
                     return flag
-            except:
+            except ValueError:
                 continue
         if flag:
             return flag
